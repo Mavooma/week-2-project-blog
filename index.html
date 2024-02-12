@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Blog</title>
+
+    <style>
+      body {
+        font-family: Poppins;
+        background-color: bisque;
+        color: #eee;
+        margin: 0;
+        font-size: 12px;
+        height: 100%;
+        padding: 0;
+      }
+
+      a {
+        text-decoration: none;
+        color: #000000;
+      }
+
+      header {
+        width: 1140px;
+        max-width: 80%;
+        margin: auto;
+        height: 50px;
+        display: flex;
+        align-items: center;
+        position: relative;
+        z-index: 100;
+      }
+
+      header a {
+        margin-right: 40px;
+        width: 100%;
+      }
+
+      /* carousel */
+      .carousel {
+        width: 100vw;
+        height: 100vh;
+        overflow: hidden;
+        margin-top: -50px;
+        position: relative;
+      }
+
+      .carousel .list .item {
+        position: absolute;
+        inset: 0 0 0 0;
+      }
+
+      .carousel .list .item img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .carousel .list .item .content {
+        position: absolute;
+        top: 20%;
+        width: 1140px;
+        max-width: 80%;
+        left: 50%;
+        transform: translateX(-50%);
+        padding-right: 30%;
+        box-sizing: border-box;
+        color: #fff;
+        text-shadow: 0 5px 10px #0004;
+      }
+
+      .carousel .list .item .content .author {
+        font-weight: bold;
+        letter-spacing: 5px;
+      }
+
+      .carousel .list .item .content .title,
+      .carousel .list .item .content .topic {
+        font-weight: bold;
+        font-size: 5em;
+        line-height: 1.3em;
+      }
+
+      .carousel .list .item .content .topic {
+        color: #f16838;
+      }
+
+      .carousel .list .item .content .buttons{
+        display: grid;
+        grid-template-columns: repeat(2, 130px);
+        grid-template-rows: 40px;
+        gap: 5px;
+        margin-top: 20px;
+      }
+
+      .carousel .list .item .content button{
+        border: none;
+        background-color: #eee;
+        letter-spacing: 3px;
+        font-family: Poppins;
+        font-weight: 500;
+      }
+
+      .carousel .list .item .content button:nth-child(2){
+        background-color: transparent;
+        color: #eee;
+        border: 1px solid #eee;
+      }
+
+      /* thumbnail */
+      .thumbnail{
+        position: absolute;
+        bottom: 50px;
+        left: 50%;
+        width: max-content;
+        z-index: 100;
+        display: flex;
+        gap: 20px;
+      }
+
+      .thumbnail .item{
+        width: 150px;
+        height: 220px;
+        flex-shrink: 0;
+        position: relative;
+      }
+
+      .thumbnail .item img{
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 20px;
+      }
+
+      .thumbnail .item .content{
+        position: absolute;
+        bottom: 10px;
+        left: 10px;
+        right: 10px;
+      }
+
+      .thumbnail .item .content .title{
+        font-weight: bold;
+      }
+
+      /* arrows */
+      .arrows{
+        position: absolute;
+        top: 80%;
+        right: 52%;
+        width: 300px;
+        max-width: 30%;
+        display: flex;
+        gap: 10px;
+        align-items: center;
+      }
+
+      .arrows button{
+        width: 40px;
+        height: 40px;
+        border-radius: 50px;
+        background-color: #eee4;
+        border: none;
+        font-family: monospace;
+        color: #fff;
+        font-weight: bold;
+        font-size: large;
+        transition: .5s;
+        z-index: 100;
+      }
+
+      .arrows button:hover{
+        background-color: #f16838;
+        color: #eee;
+        cursor: pointer;
+      }
+
+      .carousel .list .item:nth-child(1){
+        z-index: 1;
+      }
+      
+      .carousel .list .item:nth-child(1) .author,
+      .carousel .list .item:nth-child(1) .title,
+      .carousel .list .item:nth-child(1) .topic,
+      .carousel .list .item:nth-child(1) .des,
+      .carousel .list .item:nth-child(1) .buttons{
+        transform: translateY(50px);
+        filter: blur(20px);
+        opacity: 0;
+        animation: showContent 0.5s 1s linear 1 forwards;
+      }
+
+      @keyframes showContent{
+        to{
+            opacity: 1;
+            filter: blur(0);
+            transform: translateY(0);
+        }
+      }
+
+      .carousel .list .item:nth-child(1) .title{
+        animation-delay: 1.2s;
+      }
+
+      .carousel .list .item:nth-child(1) .topic{
+        animation-delay: 1.4s;
+      }
+
+      .carousel .list .item:nth-child(1) .des{
+        animation-delay: 1.6s;
+      }
+
+      .carousel .list .item:nth-child(1) .buttons{
+        animation-delay: 1.8s;
+      }
+
+      .carousel.next .list .item:nth-child(1) img{
+        width: 150px;
+        height: 220px;
+        position: absolute;
+        left: 50%;
+        bottom: 50px;
+        border-radius: 20px;
+        animation: showImage 0.5s linear 1 forwards;
+      }
+
+      @keyframes showImage{
+        to{
+            width: 100%;
+            height: 100%;
+            left: 0;
+            bottom: 0;
+            border-radius: 0;
+        }
+      }
+
+      .carousel.next .thumbnail .item:nth-child(1){
+        width: 0;
+        overflow: hidden;
+        animation: showThumbnail .5s linear 1 forwards;
+      }
+
+      @keyframes showThumbnail{
+        to{
+            width: 150px;
+        }
+      }
+
+      .carousel.next .thumbnail{
+        transform: translateX(150px);
+        animation: transformThumbnail .5s linear forwards;
+      }
+
+      @keyframes transformThumbnail{
+        to{
+            transform: translateX(0);
+        }
+      }
+
+      /* effect prev click */
+      .carousel.prev .list .item:nth-child(2){
+        z-index: 2;
+      }
+
+      .carousel.prev .list .item:nth-child(2) img{
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        animation: outImage 0.5s linear 1 forwards;
+      }
+
+      @keyframes outImage{
+        to{
+            width: 150px;
+            height: 220px;
+            border-radius: 20px;
+            left: 50%;
+            bottom: 50px;
+        }
+      }
+
+      .carousel.prev .thumbnail .item:nth-child(1){
+        width: 0;
+        overflow: hidden;
+        opacity: 0;
+        animation: showThumbnail 0.5s linear 1 forwards;
+      }
+
+      .carousel.prev .list .item:nth-child(2) .author,
+      .carousel.prev .list .item:nth-child(2) .title,
+      .carousel.prev .list .item:nth-child(2) .topic,
+      .carousel.prev .list .item:nth-child(2) .des,
+      .carousel.prev .list .item:nth-child(2) .buttons{
+        animation: contentOut 1.5s linear 1 forwards;
+      }
+
+      @keyframes contentOut{
+        to{
+            transform: translateX(-150px);
+            filter: blur(20px);
+            opacity: 0;
+        }
+      }
+
+      .carousel.next .arrows button,
+      .carousel.prev .arrows button{
+        pointer-events: none;
+      }
+
+      .time{
+        width: 0%;
+        height: 5px;
+        background-color: #f16838;
+        position: absolute;
+        z-index: 100;
+        top: 0;
+        left: 0;
+      }
+
+      .carousel.next .time,
+      .carousel.prev .time{
+        width: 100%;
+        animation: timeRunning 2s linear 1 forwards;
+      }
+
+      @keyframes timeRunning{
+        to{
+            width: 0;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- header section -->
+    <header>
+      <nav>
+        <a href="#">Home</a>
+        <a href="#">Contact</a>
+        <a href="#">Info</a>
+      </nav>
+    </header>
+
+    <!-- Slider section-->
+    <div class="carousel">
+      <div class="list">
+        <div class="item">
+          <img
+            src="https://scontent.fjnb2-1.fna.fbcdn.net/v/t39.30808-6/407379462_765252228951980_7739047596953071686_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=a73e89&_nc_eui2=AeEmnEtcNaALmpwKSGFq0pNy_OqqGFHCDPX86qoYUcIM9SiUOmrwvn5ZNSvS40OTO0k8csYnfPfB23afaZDcCX-H&_nc_ohc=WHgLzmertYUAX9Hy5kZ&_nc_pt=5&_nc_zt=23&_nc_ht=scontent.fjnb2-1.fna&oh=00_AfC31mpQPA_U4XrihtBmC8XUBUoJyMoYXChLZP0n4vARPA&oe=65CF1667"
+            alt=""
+          />
+          <div class="content">
+            <div class="author">Vooma Productions</div>
+            <div class="title">Zulu wedding</div>
+            <div class="topic">Photography</div>
+            <div class="des">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Similique, debitis beatae? Impedit pariatur, sequi aliquam possimus rerum necessitatibus eum quidem explicabo dignissimos unde. Reprehenderit laboriosam nihil tenetur quasi facere perferendis.</div>
+            <div class="buttons">
+                <button>See More</button>
+                <button>Learn More</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="item">
+          <img
+            src="https://scontent.fjnb2-1.fna.fbcdn.net/v/t39.30808-6/200883389_3123372811210546_4124382481290046043_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=dd5e9f&_nc_eui2=AeHQclHcr4ZRzNw1eyTTaOM0s7d1k9iMJyezt3WT2IwnJ49-6u31xVLHft83p2E7YtK0LNxo_IDrSE9ITWDYVpix&_nc_ohc=HaAqk7Y-D5YAX_Uwj-P&_nc_pt=5&_nc_zt=23&_nc_ht=scontent.fjnb2-1.fna&oh=00_AfCl3gwNlh7p-x9iBW5cI0D-glAASFqX51ZlcTgAqNLfMQ&oe=65CEA0D2"
+            alt=""
+          />
+          <div class="content">
+            <div class="author">Vooma Productions</div>
+            <div class="title">Zulu wedding</div>
+            <div class="topic">Photography</div>
+            <div class="des">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Similique, debitis beatae? Impedit pariatur, sequi aliquam possimus rerum necessitatibus eum quidem explicabo dignissimos unde. Reprehenderit laboriosam nihil tenetur quasi facere perferendis.</div>
+            <div class="buttons">
+                <button>See More</button>
+                <button>Learn More</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="item">
+          <img
+            src="https://scontent.fjnb2-1.fna.fbcdn.net/v/t1.6435-9/201832175_3092434847637676_975371506227990415_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=dd63ad&_nc_eui2=AeGAUc8WamvewWvJY79mXrXjIS75RR4G7-MhLvlFHgbv4z2CWQQGQUhi2nl8RQW3O6O1y0TA30LclIpW9X3SpYyE&_nc_ohc=CvZMkeEtBI0AX8hqNue&_nc_pt=5&_nc_ht=scontent.fjnb2-1.fna&oh=00_AfDei8QuwxKK8LXj3iQgAkpZEHe4U7TdrLeNj2I6gMyIyw&oe=65F135ED"
+            alt=""
+          />
+          <div class="content">
+            <div class="author">Vooma Productions</div>
+            <div class="title">Zulu wedding</div>
+            <div class="topic">Photography</div>
+            <div class="des">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Similique, debitis beatae? Impedit pariatur, sequi aliquam possimus rerum necessitatibus eum quidem explicabo dignissimos unde. Reprehenderit laboriosam nihil tenetur quasi facere perferendis.</div>
+            <div class="buttons">
+                <button>See More</button>
+                <button>Learn More</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="item">
+          <img
+            src="https://scontent.fjnb2-1.fna.fbcdn.net/v/t1.6435-9/46479285_2183313701883133_1995816545913143296_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=0bb214&_nc_eui2=AeEQKcGlZPxnYzVV4MSRnp_HuzZ1sxbvrxa7NnWzFu-vFniI_nxZlH39kFYDiQSy9PVujP4LKzR66aWPjI2GRkRJ&_nc_ohc=3JroBg0NOM0AX9_I3Qj&_nc_pt=5&_nc_ht=scontent.fjnb2-1.fna&oh=00_AfCzAT_CffLNLA02y_RM55wqMDLspIegIuBcOBO-9ZWfJA&oe=65F1507D"
+            alt=""
+          />
+          <div class="content">
+            <div class="author">Vooma Productions</div>
+            <div class="title">Zulu wedding</div>
+            <div class="topic">Photography</div>
+            <div class="des">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Similique, debitis beatae? Impedit pariatur, sequi aliquam possimus rerum necessitatibus eum quidem explicabo dignissimos unde. Reprehenderit laboriosam nihil tenetur quasi facere perferendis.</div>
+            <div class="buttons">
+                <button>See More</button>
+                <button>Learn More</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- thumbnail -->
+      <div class="thumbnail">
+        <div class="item">
+          <img
+            src="https://scontent.fjnb2-1.fna.fbcdn.net/v/t39.30808-6/407379462_765252228951980_7739047596953071686_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=a73e89&_nc_eui2=AeEmnEtcNaALmpwKSGFq0pNy_OqqGFHCDPX86qoYUcIM9SiUOmrwvn5ZNSvS40OTO0k8csYnfPfB23afaZDcCX-H&_nc_ohc=WHgLzmertYUAX9Hy5kZ&_nc_pt=5&_nc_zt=23&_nc_ht=scontent.fjnb2-1.fna&oh=00_AfC31mpQPA_U4XrihtBmC8XUBUoJyMoYXChLZP0n4vARPA&oe=65CF1667"
+            alt=""
+          />
+          <div class="content">
+            <div class="title">picture slider</div>
+
+            <div class="des">description</div>
+          </div>
+        </div>
+        <div class="item">
+          <img
+            src="https://scontent.fjnb2-1.fna.fbcdn.net/v/t39.30808-6/200883389_3123372811210546_4124382481290046043_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=dd5e9f&_nc_eui2=AeHQclHcr4ZRzNw1eyTTaOM0s7d1k9iMJyezt3WT2IwnJ49-6u31xVLHft83p2E7YtK0LNxo_IDrSE9ITWDYVpix&_nc_ohc=HaAqk7Y-D5YAX_Uwj-P&_nc_pt=5&_nc_zt=23&_nc_ht=scontent.fjnb2-1.fna&oh=00_AfCl3gwNlh7p-x9iBW5cI0D-glAASFqX51ZlcTgAqNLfMQ&oe=65CEA0D2"
+            alt=""
+          />
+          <div class="content">
+            <div class="title">picture slider</div>
+
+            <div class="des">description</div>
+          </div>
+        </div>
+        <div class="item">
+          <img
+            src="https://scontent.fjnb2-1.fna.fbcdn.net/v/t1.6435-9/201832175_3092434847637676_975371506227990415_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=dd63ad&_nc_eui2=AeGAUc8WamvewWvJY79mXrXjIS75RR4G7-MhLvlFHgbv4z2CWQQGQUhi2nl8RQW3O6O1y0TA30LclIpW9X3SpYyE&_nc_ohc=CvZMkeEtBI0AX8hqNue&_nc_pt=5&_nc_ht=scontent.fjnb2-1.fna&oh=00_AfDei8QuwxKK8LXj3iQgAkpZEHe4U7TdrLeNj2I6gMyIyw&oe=65F135ED"
+            alt=""
+          />
+          <div class="content">
+            <div class="title">picture slider</div>
+
+            <div class="des">description</div>
+          </div>
+        </div>
+        <div class="item">
+          <img
+            src="https://scontent.fjnb2-1.fna.fbcdn.net/v/t1.6435-9/46479285_2183313701883133_1995816545913143296_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=0bb214&_nc_eui2=AeEQKcGlZPxnYzVV4MSRnp_HuzZ1sxbvrxa7NnWzFu-vFniI_nxZlH39kFYDiQSy9PVujP4LKzR66aWPjI2GRkRJ&_nc_ohc=3JroBg0NOM0AX9_I3Qj&_nc_pt=5&_nc_ht=scontent.fjnb2-1.fna&oh=00_AfCzAT_CffLNLA02y_RM55wqMDLspIegIuBcOBO-9ZWfJA&oe=65F1507D"
+            alt=""
+          />
+          <div class="content">
+            <div class="title">picture slider</div>
+
+            <div class="des">description</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- arrows -->
+      <div class="arrows">
+        <button id="prev"><</button>
+        <button id="next">></button>
+      </div>
+      <div class="time"></div>
+    </div>
+
+    <!-- main javascript -->
+    <script>
+        let nextDom = document.getElementById('next');
+        let prevDom = document.getElementById('prev');
+        let carouselDom = document.querySelector('.carousel');
+        let listItemDom = document.querySelector('.carousel .list');
+        let thumbnailDom = document.querySelector('.carousel .thumbnail');
+
+        nextDom.onclick = function(){
+            showSlider('Next');
+        }
+
+        PrevDom.onclick = function(){
+            showSlider('Prev');
+        }
+
+        let timeRunning = 3000;
+        let runTimeOut;
+        function showSlider(type){
+            let itemSlider = document.querySelectorAll('.carousel .list .item');
+            let itemThumbnail = document.querySelectorAll('.carousel .thumbnail .item');
+
+            if(type === 'next'){
+                listItemDom.appendChild(itemSlider[0]);
+                thumbnailDom.appendChild(itemThumbnail[0]);
+                carouselDom.classList.add('next');
+            } else{
+                let positionLastItem = itemSlider.length -1;
+                listItemDom.prepend(itemSlider[positionLastItem]);
+                thumbnailDom.prepend(itemThumbnail[positionLastItem]);
+                carouselDom.classList.add('prev');
+            }
+
+            clearTimeout(runTimeOut);
+            runTimeOut = setTimeout(() => {
+                carouselDom.classList.remove('next');
+                carouselDom.classList.remove('prev');
+            }, timeRunning)
+        }
+    </script>
+  </body>
+</html>
