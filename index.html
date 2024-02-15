@@ -86,7 +86,7 @@
         color: #f16838;
       }
 
-      .carousel .list .item .content .buttons{
+      .carousel .list .item .content .buttons {
         display: grid;
         grid-template-columns: repeat(2, 130px);
         grid-template-rows: 40px;
@@ -94,22 +94,23 @@
         margin-top: 20px;
       }
 
-      .carousel .list .item .content button{
+      .carousel .list .item .content button {
         border: none;
         background-color: #eee;
         letter-spacing: 3px;
         font-family: Poppins;
         font-weight: 500;
+        cursor: pointer;
       }
 
-      .carousel .list .item .content button:nth-child(2){
+      .carousel .list .item .content button:nth-child(2) {
         background-color: transparent;
         color: #eee;
         border: 1px solid #eee;
       }
 
       /* thumbnail */
-      .thumbnail{
+      .thumbnail {
         position: absolute;
         bottom: 50px;
         left: 50%;
@@ -119,33 +120,33 @@
         gap: 20px;
       }
 
-      .thumbnail .item{
+      .thumbnail .item {
         width: 150px;
         height: 220px;
         flex-shrink: 0;
         position: relative;
       }
 
-      .thumbnail .item img{
+      .thumbnail .item img {
         width: 100%;
         height: 100%;
         object-fit: cover;
         border-radius: 20px;
       }
 
-      .thumbnail .item .content{
+      .thumbnail .item .content {
         position: absolute;
         bottom: 10px;
         left: 10px;
         right: 10px;
       }
 
-      .thumbnail .item .content .title{
+      .thumbnail .item .content .title {
         font-weight: bold;
       }
 
       /* arrows */
-      .arrows{
+      .arrows {
         position: absolute;
         top: 80%;
         right: 52%;
@@ -156,7 +157,7 @@
         align-items: center;
       }
 
-      .arrows button{
+      .arrows button {
         width: 40px;
         height: 40px;
         border-radius: 50px;
@@ -166,56 +167,56 @@
         color: #fff;
         font-weight: bold;
         font-size: large;
-        transition: .5s;
+        transition: 0.5s;
         z-index: 100;
       }
 
-      .arrows button:hover{
+      .arrows button:hover {
         background-color: #f16838;
         color: #eee;
         cursor: pointer;
       }
 
-      .carousel .list .item:nth-child(1){
+      .carousel .list .item:nth-child(1) {
         z-index: 1;
       }
-      
+
       .carousel .list .item:nth-child(1) .author,
       .carousel .list .item:nth-child(1) .title,
       .carousel .list .item:nth-child(1) .topic,
       .carousel .list .item:nth-child(1) .des,
-      .carousel .list .item:nth-child(1) .buttons{
+      .carousel .list .item:nth-child(1) .buttons {
         transform: translateY(50px);
         filter: blur(20px);
         opacity: 0;
         animation: showContent 0.5s 1s linear 1 forwards;
       }
 
-      @keyframes showContent{
-        to{
-            opacity: 1;
-            filter: blur(0);
-            transform: translateY(0);
+      @keyframes showContent {
+        to {
+          opacity: 1;
+          filter: blur(0);
+          transform: translateY(0);
         }
       }
 
-      .carousel .list .item:nth-child(1) .title{
+      .carousel .list .item:nth-child(1) .title {
         animation-delay: 1.2s;
       }
 
-      .carousel .list .item:nth-child(1) .topic{
+      .carousel .list .item:nth-child(1) .topic {
         animation-delay: 1.4s;
       }
 
-      .carousel .list .item:nth-child(1) .des{
+      .carousel .list .item:nth-child(1) .des {
         animation-delay: 1.6s;
       }
 
-      .carousel .list .item:nth-child(1) .buttons{
+      .carousel .list .item:nth-child(1) .buttons {
         animation-delay: 1.8s;
       }
 
-      .carousel.next .list .item:nth-child(1) img{
+      .carousel.next .list .item:nth-child(1) img {
         width: 150px;
         height: 220px;
         position: absolute;
@@ -225,62 +226,62 @@
         animation: showImage 0.5s linear 1 forwards;
       }
 
-      @keyframes showImage{
-        to{
-            width: 100%;
-            height: 100%;
-            left: 0;
-            bottom: 0;
-            border-radius: 0;
+      @keyframes showImage {
+        to {
+          width: 100%;
+          height: 100%;
+          left: 0;
+          bottom: 0;
+          border-radius: 0;
         }
       }
 
-      .carousel.next .thumbnail .item:nth-child(1){
+      .carousel.next .thumbnail .item:nth-child(1) {
         width: 0;
         overflow: hidden;
-        animation: showThumbnail .5s linear 1 forwards;
+        animation: showThumbnail 0.5s linear 1 forwards;
       }
 
-      @keyframes showThumbnail{
-        to{
-            width: 150px;
+      @keyframes showThumbnail {
+        to {
+          width: 150px;
         }
       }
 
-      .carousel.next .thumbnail{
+      .carousel.next .thumbnail {
         transform: translateX(150px);
-        animation: transformThumbnail .5s linear forwards;
+        animation: transformThumbnail 0.5s linear forwards;
       }
 
-      @keyframes transformThumbnail{
-        to{
-            transform: translateX(0);
+      @keyframes transformThumbnail {
+        to {
+          transform: translateX(0);
         }
       }
 
       /* effect prev click */
-      .carousel.prev .list .item:nth-child(2){
+      .carousel.prev .list .item:nth-child(2) {
         z-index: 2;
       }
 
-      .carousel.prev .list .item:nth-child(2) img{
+      .carousel.prev .list .item:nth-child(2) img {
         position: absolute;
         bottom: 0;
         left: 0;
         animation: outImage 0.5s linear 1 forwards;
       }
 
-      @keyframes outImage{
-        to{
-            width: 150px;
-            height: 220px;
-            border-radius: 20px;
-            left: 50%;
-            bottom: 50px;
+      @keyframes outImage {
+        to {
+          width: 150px;
+          height: 220px;
+          border-radius: 20px;
+          left: 50%;
+          bottom: 50px;
         }
       }
 
-      .carousel.prev .thumbnail .item:nth-child(1){
+      .carousel.prev .thumbnail .item:nth-child(1) {
         width: 0;
         overflow: hidden;
         opacity: 0;
@@ -291,24 +292,24 @@
       .carousel.prev .list .item:nth-child(2) .title,
       .carousel.prev .list .item:nth-child(2) .topic,
       .carousel.prev .list .item:nth-child(2) .des,
-      .carousel.prev .list .item:nth-child(2) .buttons{
+      .carousel.prev .list .item:nth-child(2) .buttons {
         animation: contentOut 1.5s linear 1 forwards;
       }
 
-      @keyframes contentOut{
-        to{
-            transform: translateX(-150px);
-            filter: blur(20px);
-            opacity: 0;
+      @keyframes contentOut {
+        to {
+          transform: translateX(-150px);
+          filter: blur(20px);
+          opacity: 0;
         }
       }
 
       .carousel.next .arrows button,
-      .carousel.prev .arrows button{
+      .carousel.prev .arrows button {
         pointer-events: none;
       }
 
-      .time{
+      .time {
         width: 0%;
         height: 5px;
         background-color: #f16838;
@@ -319,14 +320,14 @@
       }
 
       .carousel.next .time,
-      .carousel.prev .time{
+      .carousel.prev .time {
         width: 100%;
         animation: timeRunning 2s linear 1 forwards;
       }
 
-      @keyframes timeRunning{
-        to{
-            width: 0;
+      @keyframes timeRunning {
+        to {
+          width: 0;
         }
       }
     </style>
@@ -353,10 +354,16 @@
             <div class="author">Vooma Productions</div>
             <div class="title">Zulu wedding</div>
             <div class="topic">Photography</div>
-            <div class="des">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Similique, debitis beatae? Impedit pariatur, sequi aliquam possimus rerum necessitatibus eum quidem explicabo dignissimos unde. Reprehenderit laboriosam nihil tenetur quasi facere perferendis.</div>
+            <div class="des">
+              Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+              Similique, debitis beatae? Impedit pariatur, sequi aliquam
+              possimus rerum necessitatibus eum quidem explicabo dignissimos
+              unde. Reprehenderit laboriosam nihil tenetur quasi facere
+              perferendis.
+            </div>
             <div class="buttons">
-                <button>See More</button>
-                <button>Learn More</button>
+              <button>See More</button>
+              <button>Learn More</button>
             </div>
           </div>
         </div>
@@ -370,10 +377,16 @@
             <div class="author">Vooma Productions</div>
             <div class="title">Zulu wedding</div>
             <div class="topic">Photography</div>
-            <div class="des">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Similique, debitis beatae? Impedit pariatur, sequi aliquam possimus rerum necessitatibus eum quidem explicabo dignissimos unde. Reprehenderit laboriosam nihil tenetur quasi facere perferendis.</div>
+            <div class="des">
+              Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+              Similique, debitis beatae? Impedit pariatur, sequi aliquam
+              possimus rerum necessitatibus eum quidem explicabo dignissimos
+              unde. Reprehenderit laboriosam nihil tenetur quasi facere
+              perferendis.
+            </div>
             <div class="buttons">
-                <button>See More</button>
-                <button>Learn More</button>
+              <button>See More</button>
+              <button>Learn More</button>
             </div>
           </div>
         </div>
@@ -387,10 +400,16 @@
             <div class="author">Vooma Productions</div>
             <div class="title">Zulu wedding</div>
             <div class="topic">Photography</div>
-            <div class="des">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Similique, debitis beatae? Impedit pariatur, sequi aliquam possimus rerum necessitatibus eum quidem explicabo dignissimos unde. Reprehenderit laboriosam nihil tenetur quasi facere perferendis.</div>
+            <div class="des">
+              Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+              Similique, debitis beatae? Impedit pariatur, sequi aliquam
+              possimus rerum necessitatibus eum quidem explicabo dignissimos
+              unde. Reprehenderit laboriosam nihil tenetur quasi facere
+              perferendis.
+            </div>
             <div class="buttons">
-                <button>See More</button>
-                <button>Learn More</button>
+              <button>See More</button>
+              <button>Learn More</button>
             </div>
           </div>
         </div>
@@ -404,10 +423,16 @@
             <div class="author">Vooma Productions</div>
             <div class="title">Zulu wedding</div>
             <div class="topic">Photography</div>
-            <div class="des">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Similique, debitis beatae? Impedit pariatur, sequi aliquam possimus rerum necessitatibus eum quidem explicabo dignissimos unde. Reprehenderit laboriosam nihil tenetur quasi facere perferendis.</div>
+            <div class="des">
+              Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+              Similique, debitis beatae? Impedit pariatur, sequi aliquam
+              possimus rerum necessitatibus eum quidem explicabo dignissimos
+              unde. Reprehenderit laboriosam nihil tenetur quasi facere
+              perferendis.
+            </div>
             <div class="buttons">
-                <button>See More</button>
-                <button>Learn More</button>
+              <button onclick="handleLearnMoreClick(this)">See More</button>
+              <button onclick="handleLearnMoreClick(this)">Learn More</button>
             </div>
           </div>
         </div>
@@ -471,43 +496,52 @@
 
     <!-- main javascript -->
     <script>
-        let nextDom = document.getElementById('next');
-        let prevDom = document.getElementById('prev');
-        let carouselDom = document.querySelector('.carousel');
-        let listItemDom = document.querySelector('.carousel .list');
-        let thumbnailDom = document.querySelector('.carousel .thumbnail');
+      let nextDom = document.getElementById("next");
+      let prevDom = document.getElementById("prev");
+      let carouselDom = document.querySelector(".carousel");
+      let listItemDom = document.querySelector(".carousel .list");
+      let thumbnailDom = document.querySelector(".carousel .thumbnail");
 
-        nextDom.onclick = function(){
-            showSlider('Next');
+      nextDom.onclick = function () {
+        showSlider("next");
+      };
+
+      prevDom.onclick = function () {
+        showSlider("prev");
+      };
+
+      let timeRunning = 3000;
+      let runTimeOut;
+      function showSlider(type) {
+        let itemSlider = document.querySelectorAll(".carousel .list .item");
+        let itemThumbnail = document.querySelectorAll(
+          ".carousel .thumbnail .item"
+        );
+
+        if (type === "next") {
+          listItemDom.appendChild(itemSlider[0]);
+          thumbnailDom.appendChild(itemThumbnail[0]);
+          carouselDom.classList.add("next");
+        } else if (type === "prev") {
+          let positionLastItem = itemSlider.length - 1;
+          listItemDom.prepend(itemSlider[positionLastItem]);
+          thumbnailDom.prepend(itemThumbnail[positionLastItem]);
+          carouselDom.classList.add("prev");
         }
 
-        PrevDom.onclick = function(){
-            showSlider('Prev');
+        clearTimeout(runTimeOut);
+        runTimeOut = setTimeout(() => {
+          carouselDom.classList.remove("next");
+          carouselDom.classList.remove("prev");
+        }, timeRunning);
+      }
+
+      function handleLearnMoreClick(button){
+        let name = prompt('Please Enter Your Name');
+        if(name){
+          alert(`Thank you for subscribing ${name}.We will be in touch`);
         }
-
-        let timeRunning = 3000;
-        let runTimeOut;
-        function showSlider(type){
-            let itemSlider = document.querySelectorAll('.carousel .list .item');
-            let itemThumbnail = document.querySelectorAll('.carousel .thumbnail .item');
-
-            if(type === 'next'){
-                listItemDom.appendChild(itemSlider[0]);
-                thumbnailDom.appendChild(itemThumbnail[0]);
-                carouselDom.classList.add('next');
-            } else{
-                let positionLastItem = itemSlider.length -1;
-                listItemDom.prepend(itemSlider[positionLastItem]);
-                thumbnailDom.prepend(itemThumbnail[positionLastItem]);
-                carouselDom.classList.add('prev');
-            }
-
-            clearTimeout(runTimeOut);
-            runTimeOut = setTimeout(() => {
-                carouselDom.classList.remove('next');
-                carouselDom.classList.remove('prev');
-            }, timeRunning)
-        }
+      }
     </script>
   </body>
 </html>
